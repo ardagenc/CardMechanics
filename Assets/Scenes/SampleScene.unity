@@ -427,7 +427,7 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   cardSlotPrefab: {fileID: 2104386382290784720, guid: 903d8ca5a970bc74f9d2f300c31a4258, type: 3}
   cards: []
-  cardAmount: 5
+  cardAmount: 1
 --- !u!1 &1336150671
 GameObject:
   m_ObjectHideFlags: 0

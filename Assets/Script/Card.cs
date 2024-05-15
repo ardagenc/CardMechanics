@@ -19,7 +19,8 @@ public class Card : MonoBehaviour,
     public float moveSpeedLimit;
 
     private Vector3 targetPosition;
-    
+    [SerializeField] private float followSpeed;
+
 
     [Header("Card bools")]
     private bool isSelected = false;
@@ -34,27 +35,25 @@ public class Card : MonoBehaviour,
     public bool IsSelected { get => isSelected; set => isSelected = value; }
     public Vector3 TargetPosition { get => targetPosition; set => targetPosition = value; }
     public bool IsHovering { get => isHovering; set => isHovering = value; }
+    public bool IsDragging { get => isDragging; set => isDragging = value; }
+    public Vector3 Offset { get => offset; set => offset = value; }
 
     void Update()
     {
-        Debug.Log(isHovering);
-
-        if (isDragging)
+        if (IsDragging)
         {
-            TargetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - offset;
-            Vector2 direction = ((Vector2)TargetPosition - (Vector2)transform.position).normalized;
-            Vector2 velocity = direction * Mathf.Min(moveSpeedLimit, Vector2.Distance(transform.position, targetPosition) / Time.deltaTime);
+            TargetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Offset;
 
-            transform.position = Vector3.Lerp(transform.position, (Vector2)TargetPosition, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, (Vector2)TargetPosition, followSpeed * Time.deltaTime);
         }
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
         BeginDragEvent.Invoke(this);
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        offset = mousePosition - (Vector2)transform.position;
+        Offset = mousePosition - (Vector2)transform.position;
 
-        isDragging = true;
+        IsDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -65,7 +64,7 @@ public class Card : MonoBehaviour,
     public void OnEndDrag(PointerEventData eventData)
     {
         EndDragEvent.Invoke(this);
-        isDragging = false;
+        IsDragging = false;
         ReturnToCardSlot();
 
     }
@@ -104,7 +103,7 @@ public class Card : MonoBehaviour,
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isDragging) return;
+        if (IsDragging) return;
 
 
         if (!IsSelected)
