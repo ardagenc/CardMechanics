@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -9,18 +7,18 @@ public class Card : MonoBehaviour,
     IDragHandler, IBeginDragHandler, IEndDragHandler,
     IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public UnityEvent<Card> BeginDragEvent;
-    [HideInInspector] public UnityEvent<Card> EndDragEvent;
+    [HideInInspector] public UnityEvent<Card, GameObject> BeginDragEvent;
+    [HideInInspector] public UnityEvent<Card, GameObject> EndDragEvent;
     [HideInInspector] public UnityEvent<Card> PointerEnterEvent;
     [HideInInspector] public UnityEvent<Card> PointerExitEvent;
     [HideInInspector] public UnityEvent<Card> PointerUpEvent;
     [HideInInspector] public UnityEvent<Card> PointerDownEvent;
 
-    public float moveSpeedLimit;
-
-    private Vector3 targetPosition;
+    [SerializeField] private GameObject cardVisual;
     [SerializeField] private float followSpeed;
 
+    
+    private Vector3 targetPosition;
 
     [Header("Card bools")]
     private bool isSelected = false;
@@ -37,6 +35,7 @@ public class Card : MonoBehaviour,
     public bool IsHovering { get => isHovering; set => isHovering = value; }
     public bool IsDragging { get => isDragging; set => isDragging = value; }
     public Vector3 Offset { get => offset; set => offset = value; }
+    public GameObject CardVisual { get => cardVisual; set => cardVisual = value; }
 
     void Update()
     {
@@ -49,7 +48,7 @@ public class Card : MonoBehaviour,
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        BeginDragEvent.Invoke(this);
+        BeginDragEvent.Invoke(this, CardVisual);
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Offset = mousePosition - (Vector2)transform.position;
 
@@ -63,7 +62,7 @@ public class Card : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        EndDragEvent.Invoke(this);
+        EndDragEvent.Invoke(this, CardVisual);
         IsDragging = false;
         ReturnToCardSlot();
 
