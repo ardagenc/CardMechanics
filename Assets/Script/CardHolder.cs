@@ -18,8 +18,10 @@ public class CardHolder : MonoBehaviour
     {
         for (int i = 0; i < cardAmount; i++)
         {
-            Instantiate(cardSlotPrefab, transform);
+            Instantiate(cardSlotPrefab, transform);  
         }
+
+
 
         cards = GetComponentsInChildren<Card>().ToList();
 
@@ -39,7 +41,6 @@ public class CardHolder : MonoBehaviour
 
     private void Update()
     {
-
         if (selectedCard != null)
         {
             for (int i = 0; i < cards.Count; i++)

@@ -17,8 +17,10 @@ public class Card : MonoBehaviour,
     [SerializeField] private GameObject cardVisual;
     [SerializeField] private float followSpeed;
 
-    
     private Vector3 targetPosition;
+
+    [Header("References")]
+    [SerializeField] private CardAnimation cardAnimation;
 
     [Header("Card bools")]
     private bool isSelected = false;
@@ -37,6 +39,10 @@ public class Card : MonoBehaviour,
     public Vector3 Offset { get => offset; set => offset = value; }
     public GameObject CardVisual { get => cardVisual; set => cardVisual = value; }
 
+    private void Start()
+    {
+        Debug.Log(transform.position);
+    }
     void Update()
     {
         if (IsDragging)
@@ -72,18 +78,15 @@ public class Card : MonoBehaviour,
     {
         if (!IsSelected)
         {
-            transform.DOMove(transform.parent.position, returnDuration)
+            transform.DOMove(transform.parent.position + Vector3.up * cardAnimation.OffsetY * 0.1f, returnDuration)
                 .SetEase(Ease.OutBack);
         }
         else
         {
-            transform.DOMove(transform.parent.position + Vector3.up * 0.5f, returnDuration)
+            transform.DOMove(transform.parent.position + Vector3.up * cardAnimation.OffsetY * 0.1f + Vector3.up * 0.5f, returnDuration)
                 .SetEase(Ease.OutBack);
         }
     }
-
-
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
