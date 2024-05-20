@@ -18,10 +18,8 @@ public class CardHolder : MonoBehaviour
     {
         for (int i = 0; i < cardAmount; i++)
         {
-            Instantiate(cardSlotPrefab, transform);  
+            Instantiate(cardSlotPrefab, transform);
         }
-
-
 
         cards = GetComponentsInChildren<Card>().ToList();
 
@@ -75,8 +73,10 @@ public class CardHolder : MonoBehaviour
     private void ChangeCardPosition(int i)
     {
         Transform selectedCardParent = selectedCard.transform.parent;
-        Transform selectedCardVisualParent = selectedCardVisual.transform.parent;
         Transform otherCardParent = cards[i].transform.parent;
+
+        CardSlot cardSlot = selectedCardParent.GetComponent<CardSlot>();
+
 
         cards[i].CardVisual.transform.SetParent(selectedCardParent);
         cards[i].transform.SetParent(selectedCardParent);
@@ -85,11 +85,13 @@ public class CardHolder : MonoBehaviour
 
         if (!cards[i].IsSelected)
         {
-            cards[i].transform.DOMove(selectedCardParent.position, 0.2f);
+            cards[i].transform.DOMove(selectedCardParent.position + Vector3.up * cardSlot.CardPositioningOffsetY * 0.1f, 0.2f);
+            cards[i].transform.DORotate(Vector3.forward * cardSlot.CardPositioningRotationZ, 0.2f);
         }
         else
         {
-            cards[i].transform.DOMove(selectedCardParent.position + Vector3.up * 0.5f, 0.2f);
+            cards[i].transform.DOMove(selectedCardParent.position + Vector3.up * cardSlot.CardPositioningOffsetY * 0.1f + Vector3.up * 0.5f, 0.2f);
+            cards[i].transform.DORotate(Vector3.forward * cardSlot.CardPositioningRotationZ, 0.2f);
         }
 
         selectedCardVisual.transform.SetParent(otherCardParent);

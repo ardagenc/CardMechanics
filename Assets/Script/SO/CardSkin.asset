@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0142bfe4095674e8fb746c635ac765, type: 3}
+  m_Name: CardSkin
+  m_EditorClassIdentifier: 
+  cardImage:
+  - {fileID: 21300000, guid: 17c70282b03ba4a4cac85541a5b4b5c0, type: 3}
+  - {fileID: 21300000, guid: 3115c250b210be448ab834700520ec12, type: 3}
+  cardShader: {fileID: 0}

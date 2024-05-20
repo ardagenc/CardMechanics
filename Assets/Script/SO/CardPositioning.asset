@@ -45,7 +45,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 1
     m_RotationOrder: 4
-  curveMultiplier: 0.35
+  curveMultiplier: 1.5
   rotation:
     serializedVersion: 2
     m_Curve:
@@ -70,4 +70,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationMultiplier: -10
+  rotationMultiplier: -20

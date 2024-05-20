@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7771696992594240098}
+  - component: {fileID: 4141776146404121000}
   m_Layer: 5
   m_Name: CardSlot
   m_TagString: Slot
@@ -112,6 +113,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4141776146404121000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104386382290784720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110cdf46265ca7c4591b7b4f41a4d4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 1021974270606422108}
+  cardPositioningRotationZ: 0
 --- !u!1 &3369825293812367449
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,14 +187,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e81fe743310a6564aa71cc2a3ccae182, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -260,7 +275,10 @@ MonoBehaviour:
   PointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  cardSlot: {fileID: 0}
   cardVisual: {fileID: 7538964693179311917}
+  cardHolder: {fileID: 0}
+  cardPositioning: {fileID: 11400000, guid: 4410da770d85b8a429f06c4fce9a699c, type: 2}
   followSpeed: 20
   cardAnimation: {fileID: 2801206826926011757}
   returnDuration: 0.3
@@ -275,6 +293,7 @@ GameObject:
   - component: {fileID: 8839080617687585881}
   - component: {fileID: 123344251474833497}
   - component: {fileID: 6484131450499066249}
+  - component: {fileID: 7368957186063695469}
   m_Layer: 5
   m_Name: CardImage
   m_TagString: Untagged
@@ -329,7 +348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e81fe743310a6564aa71cc2a3ccae182, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17c70282b03ba4a4cac85541a5b4b5c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -339,6 +358,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7368957186063695469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506494953217229749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c038d01b3bc98f42a1cff5e9df61e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardSkin: {fileID: 11400000, guid: b33565729d8a4394b93cd047b20759e3, type: 2}
+  cardImage: {fileID: 6484131450499066249}
 --- !u!1 &7538964693179311917
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +430,7 @@ MonoBehaviour:
   tiltAmount: 60
   tiltSpeed: 20
   card: {fileID: 1021974270606422108}
+  cardSlot: {fileID: 4141776146404121000}
   canvas: {fileID: 3779943943455265509}
   cardHolder: {fileID: 0}
   cardShadow: {fileID: 1374909251422499087}
